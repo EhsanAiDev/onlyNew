@@ -23,7 +23,7 @@ def askDirectionFolder():
 
     direction_path = askdirectory()
     t4.configure(text=f"direction Path: {direction_path}")
-
+    direction_path = direction_path.replace(" ", "\ ")
 
     status[1] = 1
     if status == [1,1] and direction_path != "":
