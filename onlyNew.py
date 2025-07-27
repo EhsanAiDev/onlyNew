@@ -6,10 +6,7 @@ from tkinter import PhotoImage
 from tkinter.filedialog import askdirectory
 
 def sanitize(path:str):
-    if os.name == "posix":
-        return path.replace(" ","\ ").replace("(" , "\(").replace(")" , "\)")
-    else:
-        return path
+    return path.replace(" ","\ ").replace("(" , "\(").replace(")" , "\)")
 
 ######## functions ########
 status = [0,0]
@@ -64,8 +61,10 @@ def moveFiles():
 
             x += 1
             logs.insert("end",f"moving {file}...({x}/{len(files)})\n")
-            os.system(f"cp -r {sanitize(file_path)} {sanitize(direction_path)}")
-
+            if os.name == "posix":
+                os.system(f"cp -r {sanitize(file_path)} {sanitize(direction_path)}")
+            else:
+                os.system(f"move {file_path} {direction_path}")
         logs.insert("end" , "Done.")
         logs.configure(state='disabled') # set it as read-only
         window.after(0, lambda: [b1.configure(state="normal"), b2.configure(state="normal"), submit_button.configure(state="normal")])
