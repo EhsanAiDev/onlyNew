@@ -5,12 +5,6 @@ from customtkinter import *
 from tkinter import PhotoImage
 from tkinter.filedialog import askdirectory
 
-def sanitize(path:str):
-    if os.name == "posix":
-        return path.replace(" ","\ ").replace("(" , "\(").replace(")" , "\)")
-    else:
-        return path
-
 ######## functions ########
 status = [0,0]
 def askMainFolder():
@@ -30,6 +24,7 @@ def askDirectionFolder():
 
     direction_path = askdirectory()
     t4.configure(text=f"direction Path: {direction_path}")
+    direction_path = direction_path.replace(" ", "\ ")
 
     status[1] = 1
     if status == [1,1] and direction_path != "":
@@ -55,16 +50,14 @@ def moveFiles():
         main_files = os.listdir(main_path)
         direction_files = os.listdir(direction_path)
         files = [file for file in main_files if file not in direction_files]
-
-
         x = 0
 
         for file in files:
-            file_path = f"{main_path}/{file}"
+            file_path = f"{main_path}/{file}".replace(" " , "\ ")
 
             x += 1
             logs.insert("end",f"moving {file}...({x}/{len(files)})\n")
-            os.system(f"cp -r {sanitize(file_path)} {sanitize(direction_path)}")
+            os.system(f"cp -r {file_path} {direction_path}")
 
         logs.insert("end" , "Done.")
         logs.configure(state='disabled') # set it as read-only
@@ -75,16 +68,16 @@ def moveFiles():
     
 ######## init ########
 set_appearance_mode("Dark")
-# set_default_color_theme("/usr/share/onlynew/themes/lavender.json") # for compireing .deb in linux 
-set_default_color_theme("themes/lavender.json")
+set_default_color_theme("/usr/share/onlynew/themes/lavender.json") # for compireing .deb in linux 
+# set_default_color_theme("themes/lavender.json")
 
 window = CTk()
 window.maxsize(600,230)
 window.minsize(600,230)
 
 window.title("onlyNew")
-icon = PhotoImage(file="./onlyNew_icon.png")
-# icon = PhotoImage(file="/usr/share/pixmaps/onlyNew_icon.png")
+# icon = PhotoImage(file="./onlyNew_icon.png")
+icon = PhotoImage(file="/usr/share/pixmaps/onlyNew_icon.png")
 window.iconphoto(False, icon)
 
 

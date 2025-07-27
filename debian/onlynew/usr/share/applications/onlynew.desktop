@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OnlyNew
+Exec=python3 /usr/share/onlynew/onlyNew.py
+Icon=onlyNew_icon
+Terminal=false
+Categories=Utility;
+

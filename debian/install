@@ -1,0 +1,4 @@
+onlyNew.py usr/share/onlynew/
+themes     usr/share/onlynew/
+onlyNew_icon.png usr/share/pixmaps/
+debian/onlynew.desktop usr/share/applications/

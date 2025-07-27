@@ -1,0 +1,10 @@
+Package: onlynew
+Version: 1.0-1
+Architecture: all
+Maintainer: ehsan naderlou  <ehsan.aidev@gmail.com>
+Installed-Size: 225
+Depends: python3
+Section: utils
+Priority: optional
+Homepage: https://github.com/EhsanAiDev/onlyNew
+Description: OnlyNew – A minimal desktop app to transfer only new files from one folder to another — without copying duplicates. Useful for syncing downloaded content, backing up files, or keeping two folders up to date without manually sorting through them.
